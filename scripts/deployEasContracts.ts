@@ -57,12 +57,14 @@ async function main() {
     eas: easAddress,
     schemaRegistry: schemaRegistryAddress,
   };
-  const deploymentInfo = {
-    url,
-    addresses: easContractAddress,
-  };
+  const deploymentInfo = [
+    {
+      url,
+      addresses: easContractAddress,
+    },
+  ];
 
-  const filePath = path.join(__dirname, "../artifacts/easContractAddress.json");
+  const filePath = path.join(__dirname, "../contracts/easContractAddress.json");
   await fs.writeFile(filePath, JSON.stringify(deploymentInfo));
   console.log(`Contract address saved to ${filePath}`);
 }
