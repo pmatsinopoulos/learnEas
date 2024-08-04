@@ -1,9 +1,11 @@
 node_modules
 .env
+.envrc
 
 # Hardhat files
 /cache
 /artifacts
+/contracts/*.json
 
 # TypeChain files
 /typechain
