@@ -4,7 +4,7 @@ import path from "path";
 import fs from "fs/promises";
 import { JsonRpcSigner } from "ethers";
 
-const url = "http://127.0.0.1:8545";
+const url = process.env.DEPLOYMENT_NETWORK;
 
 async function deploySchemaRegistryContract(
   signer: JsonRpcSigner
