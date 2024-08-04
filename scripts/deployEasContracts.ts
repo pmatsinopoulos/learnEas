@@ -40,6 +40,8 @@ async function deployEasContract(
 
   const easAddress = await eas.getAddress();
 
+  console.log("EAS Contract address:", schemaRegistryAddress);
+
   return easAddress;
 }
 
@@ -49,19 +51,19 @@ async function main() {
 
   const schemaRegistryAddress = await deploySchemaRegistryContract(signer);
 
-  // let filePath = path.join(__dirname, "../artifacts/schemaRegistryAddress.txt");
-  // await fs.writeFile(filePath, schemaRegistryAddress);
-  // console.log(`Contract address saved to ${filePath}`);
-
   const easAddress = await deployEasContract(signer, schemaRegistryAddress);
 
   const easContractAddress = {
     eas: easAddress,
     schemaRegistry: schemaRegistryAddress,
   };
+  const deploymentInfo = {
+    url,
+    addresses: easContractAddress,
+  };
 
   const filePath = path.join(__dirname, "../artifacts/easContractAddress.json");
-  await fs.writeFile(filePath, JSON.stringify(easContractAddress));
+  await fs.writeFile(filePath, JSON.stringify(deploymentInfo));
   console.log(`Contract address saved to ${filePath}`);
 }
 
